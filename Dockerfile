@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN cp .env.example .env
 
+RUN mkdir -p files
+
 EXPOSE 3000
 
 CMD ["python3", "app.py"]
