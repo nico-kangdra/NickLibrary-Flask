@@ -16,12 +16,17 @@ spec:
     spec:
       containers:
         - name: nicklibrary
-          image: nkangdra/kang-parkir:latest
+          image: nkangdra/nick-library:latest
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: nicklibrary-config
+          volumeMounts:
+            - name: config-nicklibrary-volume
+              mountPath: /app/.env
+              subPath: .env
+      volumes:
+        - name: config-nicklibrary-volume
+          configMap:
+            name: nicklibrary-config
       imagePullSecrets:
         - name: nkangdra
 
