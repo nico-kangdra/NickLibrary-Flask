@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nicklibrary-deployment
+  labels:
+    app: nicklibrary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nicklibrary
+  template:
+    metadata:
+      labels:
+        app: nicklibrary
+    spec:
+      containers:
+        - name: nicklibrary
+          image: nkangdra/kang-parkir:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: nicklibrary-config
+      imagePullSecrets:
+        - name: nkangdra
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nicklibrary-service
+spec:
+  type: ClusterIP
+  selector:
+    app: nicklibrary
+  ports:
+    - port: 3000
+      targetPort: 3000

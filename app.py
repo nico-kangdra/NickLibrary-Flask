@@ -536,4 +536,5 @@ def delete_user(user_id):
 
 
 if __name__ == "__main__":
+    initialize_database()
     app.run(debug=True, host=os.getenv('HOST', '0.0.0.0'), port=os.getenv('PORT', 3000))
