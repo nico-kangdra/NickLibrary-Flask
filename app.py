@@ -279,7 +279,7 @@ def list_books():
 
 # declare upload folder for file upload
 app.config['UPLOAD_FOLDER'] = 'files'
-
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024 # 100MB
 
 @app.route('/book/create', methods=['GET', 'POST'])
 def create_book():
